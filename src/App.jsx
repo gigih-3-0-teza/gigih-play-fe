@@ -1,9 +1,8 @@
-import Base from "./components/templates/Base";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <Base>
-    </Base>
+    <Home />
   )
 }
 

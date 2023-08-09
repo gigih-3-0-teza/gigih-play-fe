@@ -4,6 +4,7 @@ import CardVideo from "../components/molecules/CardVideo";
 import Base from "../components/templates/Base";
 import { getAllVideos } from "../../libs/play-api";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
     const [videos, setVideos] = useState([]);
@@ -22,12 +23,13 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-3 mt-3">
                 {videos.map((video) => {
                     return (
-                        <CardVideo
-                            key={video.id}
-                            title={video.title}
-                            description={video.description}
-                            thumbnail={video.thumbnail}
-                        />
+                        <Link to={`/video/${video._id}`} key={video._id}>
+                            <CardVideo
+                                title={video.title}
+                                description={video.description}
+                                thumbnail={video.thumbnail}
+                            />
+                        </Link>
                     )
                 })}
             </div>

@@ -9,3 +9,12 @@ export const getAllVideos = async () => {
         throw new Error(error.message);
     }
 };
+
+export const getVideoById = async (id) => {
+    try {
+        const response = await axios.get(`${API_URL}videos/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};

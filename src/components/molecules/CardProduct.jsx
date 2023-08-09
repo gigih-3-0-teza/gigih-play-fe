@@ -7,7 +7,7 @@ export default function CardProduct({ product }) {
                 <img src={product.image} alt={product.name} className="group-hover:scale-110 transition-all duration-300 w-full h-full object-cover" />
             </div>
             <div className="p-3">
-                <h1 className="text-lg text-teal-500 mb-2">{product.name}</h1>
+                <h1 className="text-lg text-teal-500 mb-2 line-clamp-2">{product.name}</h1>
                 <p className="text-sm">{currencyFormatter(product.price)}</p>
                 <h2></h2>
             </div>

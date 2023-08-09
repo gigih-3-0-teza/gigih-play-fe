@@ -1,9 +1,13 @@
 import axios from "axios";
 import { API_URL } from "../config/constants";
 
-export const getAllVideos = async () => {
+export const getAllVideos = async (search) => {
     try {
-        const response = await axios.get(`${API_URL}videos`);
+        const response = await axios.get(`${API_URL}videos`, {
+            params: {
+                search,
+            },
+        });
         return response.data;
     } catch (error) {
         throw new Error(error.message);

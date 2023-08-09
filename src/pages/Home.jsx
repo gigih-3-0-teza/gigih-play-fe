@@ -8,18 +8,23 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
     const [videos, setVideos] = useState([]);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
-        getAllVideos().then((res) => {
+        getAllVideos(search).then((res) => {
             setVideos(res.data);
         }).catch((err) => {
             alert(err.message);
         });
-    }, []);
+    }, [search]);
+
+    const handleSearch = (e) => {
+        setSearch(e.target.value);
+    }
 
     return (
         <Base>
-            <FormControl type="text" placeholder="Search ..." />
+            <FormControl type="text" placeholder="Search video ..." onChange={handleSearch} value={search} />
             <div className="grid grid-cols-2 gap-3 mt-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 {videos.map((video) => {
                     return (

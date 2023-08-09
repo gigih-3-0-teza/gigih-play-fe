@@ -12,7 +12,7 @@ export default function VideoDetail() {
     const [comments, setComments] = useState([]);
     const [products, setProducts] = useState([]);
 
-    const loadVideo = () => {
+    useEffect(() => {
         getVideoById(videoId).then((res) => {
             setVideo(res.data);
             setComments(res.data.comments);
@@ -20,10 +20,7 @@ export default function VideoDetail() {
         }).catch((err) => {
             alert(err.message);
         });
-    }
-    useEffect(() => {
-        loadVideo();
-    }, []);
+    }, [videoId]);
     return (
         <Base>
             <div className="lg:grid lg:grid-cols-3 lg:gap-3 lg:grid-rows-2">

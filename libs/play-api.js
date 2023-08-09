@@ -22,3 +22,12 @@ export const getVideoById = async (id) => {
         throw new Error(error.message);
     }
 };
+
+export const addComment = async (data) => {
+    try {
+        const response = await axios.post(`${API_URL}comments`, data);
+        return response.data;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};

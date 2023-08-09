@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Base from "../components/templates/Base";
 import { useParams } from "react-router-dom";
-import { getVideoById } from "../../libs/play-api";
+import { addComment, getVideoById } from "../../libs/play-api";
 import CardProduct from "../components/molecules/CardProduct";
 import CardComment from "../components/molecules/CardComment";
-
+import FormComment from "../components/molecules/FormComment";
 
 export default function VideoDetail() {
     const { videoId } = useParams();
@@ -21,6 +21,15 @@ export default function VideoDetail() {
             alert(err.message);
         });
     }, [videoId]);
+
+    const handleSubmit = (values) => {
+        addComment({ ...values, video: videoId }).then((res) => {
+            setComments([res.data, ...comments]);
+        }).catch((err) => {
+            alert(err.message);
+        });
+    }
+
     return (
         <Base>
             <div className="lg:grid lg:grid-cols-3 lg:gap-3 lg:grid-rows-2">
@@ -38,7 +47,7 @@ export default function VideoDetail() {
                     <p className="text-sm">{video.description}</p>
                 </div>
                 <div className="mb-3 border-b border-slate-700 pb-5 lg:row-span-2">
-                    <h1 className="text-xl text-teal-500 mb-2 font-bold">Product</h1>
+                    <h1 className="text-xl text-teal-500 mb-2 font-bold">Products</h1>
                     <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-2">
                         {products.map((product) => {
                             return (
@@ -49,6 +58,9 @@ export default function VideoDetail() {
                 </div>
                 <div className="border-b border-slate-700 lg:col-span-2">
                     <h1 className="text-xl text-teal-500 mb-2 font-bold">Comments</h1>
+                    <div className="mb-3">
+                        <FormComment onSubmit={handleSubmit} />
+                    </div>
                     <div className="flex flex-col gap-2">
                         {comments.map((comment) => {
                             return (

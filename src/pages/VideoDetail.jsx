@@ -26,37 +26,39 @@ export default function VideoDetail() {
     }, []);
     return (
         <Base>
-            <div className="py-5 mb-3 border-b border-slate-700">
-                <div className="aspect-video rounded-lg overflow-hidden mb-3">
-                    <iframe
-                        className="w-full h-full"
-                        src={video.urlEmbed}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen={true}>
-                    </iframe>
+            <div className="lg:grid lg:grid-cols-3 lg:gap-3 lg:grid-rows-2">
+                <div className="pb-5 mb-3 border-b border-slate-700 lg:col-span-2">
+                    <div className="aspect-video rounded-lg overflow-hidden mb-3">
+                        <iframe
+                            className="w-full h-full"
+                            src={video.urlEmbed}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen={true}>
+                        </iframe>
+                    </div>
+                    <h1 className="text-2xl text-teal-500 mb-2">{video.title}</h1>
+                    <p className="text-sm">{video.description}</p>
                 </div>
-                <h1 className="text-2xl text-teal-500 mb-2">{video.title}</h1>
-                <p className="text-sm">{video.description}</p>
-            </div>
-            <div className="mb-3 border-b border-slate-700 pb-5">
-                <h1 className="text-xl text-teal-500 mb-2 font-bold">Product</h1>
-                <div className="grid grid-cols-2 gap-3">
-                    {products.map((product) => {
-                        return (
-                            <CardProduct product={product} key={product._id} />
-                        )
-                    })}
+                <div className="mb-3 border-b border-slate-700 pb-5 lg:row-span-2">
+                    <h1 className="text-xl text-teal-500 mb-2 font-bold">Product</h1>
+                    <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-2">
+                        {products.map((product) => {
+                            return (
+                                <CardProduct product={product} key={product._id} />
+                            )
+                        })}
+                    </div>
                 </div>
-            </div>
-            <div className="border-b border-slate-700">
-                <h1 className="text-xl text-teal-500 mb-2 font-bold">Comments</h1>
-                <div className="flex flex-col gap-2">
-                    {comments.map((comment) => {
-                        return (
-                            <CardComment comment={comment} key={comment._id} />
-                        )
-                    })}
+                <div className="border-b border-slate-700 lg:col-span-2">
+                    <h1 className="text-xl text-teal-500 mb-2 font-bold">Comments</h1>
+                    <div className="flex flex-col gap-2">
+                        {comments.map((comment) => {
+                            return (
+                                <CardComment comment={comment} key={comment._id} />
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
         </Base>

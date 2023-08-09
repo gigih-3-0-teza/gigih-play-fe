@@ -20,7 +20,7 @@ export default function Home() {
     return (
         <Base>
             <FormControl type="text" placeholder="Search ..." />
-            <div className="grid grid-cols-2 gap-3 mt-3">
+            <div className="grid grid-cols-2 gap-3 mt-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 {videos.map((video) => {
                     return (
                         <Link to={`/video/${video._id}`} key={video._id}>
